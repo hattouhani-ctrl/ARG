@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Forgotten Archives Vault</title>
     <style>
-        /* Base styles */
         body {
             font-family: 'Courier New', monospace;
             background-color: #0a0a0a;
@@ -41,7 +40,6 @@
             text-transform: uppercase;
         }
 
-        /* Folder cards */
         .folder-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -89,20 +87,6 @@
             font-weight: bold;
         }
 
-        .folder-desc {
-            font-size: 0.9rem;
-            color: #aaa;
-            margin-bottom: 10px;
-        }
-
-        .folder-meta {
-            font-size: 0.8rem;
-            color: #666;
-            display: flex;
-            align-items: center;
-        }
-
-        /* Document viewer */
         .document-viewer {
             display: none;
             margin-top: 20px;
@@ -144,7 +128,6 @@
             line-height: 1.6;
         }
 
-        /* Password UI */
         .password-ui {
             display: none;
             margin-top: 20px;
@@ -157,15 +140,6 @@
 
         .password-ui.active {
             display: block;
-        }
-
-        .password-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #252525;
         }
 
         .password-input-container {
@@ -181,11 +155,6 @@
             border-right: none;
             border-radius: 5px 0 0 5px;
             color: #fff;
-            outline: none;
-        }
-
-        .password-input:focus {
-            border-color: #4fc3f7;
         }
 
         .password-submit {
@@ -198,10 +167,6 @@
             font-weight: bold;
         }
 
-        .password-submit:hover {
-            background-color: #3ab4e9;
-        }
-
         .password-error {
             color: #f44336;
             font-size: 0.9rem;
@@ -209,7 +174,6 @@
             display: none;
         }
 
-        /* File list */
         .file-list {
             margin-top: 20px;
         }
@@ -224,32 +188,6 @@
             border-radius: 3px;
         }
 
-        .file-item:hover {
-            background-color: rgba(30, 30, 30, 0.8);
-        }
-
-        .file-icon {
-            margin-right: 10px;
-            color: #4fc3f7;
-        }
-
-        .file-name {
-            flex-grow: 1;
-        }
-
-        .file-size {
-            color: #666;
-            font-size: 0.8rem;
-        }
-
-        .file-warning {
-            font-size: 0.8rem;
-            color: #f44336;
-            margin-top: 5px;
-            font-style: italic;
-        }
-
-        /* Audio Player */
         .audio-player {
             width: 100%;
             margin-top: 15px;
@@ -258,7 +196,6 @@
             border-radius: 5px;
         }
 
-        /* Footer */
         footer {
             margin-top: 40px;
             text-align: center;
@@ -266,57 +203,35 @@
             color: #444;
         }
 
-        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
-        }
-
-        /* Accessibility */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>FORGOTTEN ARCHIVES VAULT</h1>
-        
+
         <div class="folder-grid">
-            <!-- Archives Folder -->
             <div class="folder-card" id="archives-folder">
                 <div class="folder-header">
                     <span class="folder-icon">📁</span>
                     <span class="folder-title">ARCHIVES</span>
                 </div>
                 <p class="folder-desc">Public access granted. Contains declassified materials.</p>
-                <div class="folder-meta">
-                    <span>Last modified: ██-██-████</span>
-                </div>
             </div>
-            
-            <!-- Lost Folder -->
+
             <div class="folder-card locked" id="lost-folder">
                 <div class="folder-header">
                     <span class="folder-icon">🔒</span>
                     <span class="folder-title">LOST</span>
                 </div>
                 <p class="folder-desc">Restricted access. Password required.</p>
-                <div class="folder-meta">
-                    <span>Encryption level: ██████</span>
-                </div>
             </div>
         </div>
-        
-        <!-- Archives Document Viewer -->
+
+        <!-- ARCHIVES VIEWER -->
         <div class="document-viewer" id="archives-viewer">
             <div class="document-header">
                 <h2>RECOVERED DOCUMENT: WARNING.TXT</h2>
@@ -327,34 +242,31 @@
                 
 WARNING TO ALL PERSONNEL:
                 
-Unauthorized access to restricted materials may result in immediate termination of clearance and possible neural reconditioning.
+Unauthorized access to restricted materials may result in immediate termination of clearance.
 
 The following audio file was recovered from Sector 7. Play at your own risk.
 
 <audio controls class="audio-player">
-    <source src="https://drive.google.com/uc?export=download&id=1xec-jLG65_4L3pG1VSbMw9UQxydX5qES" type="audio/mpeg">
+    <source src="https://drive.google.com/uc?export=preview&id=1xec-jLG65_4L3pG1VSbMw9UQxydX5qES" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
 
 CAUTION: This file will self-destruct after ██ views.
             </div>
         </div>
-        
-        <!-- Password UI -->
+
+        <!-- PASSWORD UI -->
         <div class="password-ui" id="password-ui">
-            <div class="password-header">
-                <h2>ACCESS DENIED</h2>
-                <span class="document-close" id="close-password">✕</span>
-            </div>
-            <p>This folder requires Level 4 clearance. Enter passcode:</p>
+            <h2>ACCESS DENIED</h2>
+            <p>Enter passcode:</p>
             <div class="password-input-container">
                 <input type="password" class="password-input" id="password-input" placeholder="██████">
                 <button class="password-submit" id="password-submit">SUBMIT</button>
             </div>
             <p class="password-error" id="password-error">Invalid passcode. Try again.</p>
         </div>
-        
-        <!-- Hidden Content (revealed after password) -->
+
+        <!-- LOCKED CONTENT -->
         <div class="document-viewer" id="hidden-content">
             <div class="document-header">
                 <h2>LOST FILES RECOVERED</h2>
@@ -362,23 +274,21 @@ CAUTION: This file will self-destruct after ██ views.
             </div>
             <div class="file-list">
                 <div class="file-item">
-                    <span class="file-icon">📄</span>
+                    <span class="file-icon">🖼️</span>
                     <span class="file-name">
-                        <a href="https://drive.google.com/uc?export=view&id=1etjU385c8dsHWleDloinf2BQCEOQ0KH6" target="_blank">classified_report.txt</a>
+                        <a href="https://drive.google.com/uc?export=view&id=1etjU385c8dsHWleDloinf2BQCEOQ0KH6" target="_blank">recovered_image.png</a>
                     </span>
-                    <span class="file-size">4KB</span>
+                    <span class="file-size">2MB</span>
                 </div>
-                <p class="file-warning">WARNING: These files will be permanently erased in ██ days.</p>
             </div>
         </div>
-        
+
         <footer>
             <p>Listen closely. The files remember.</p>
         </footer>
     </div>
 
     <script>
-        // DOM Elements
         const archivesFolder = document.getElementById('archives-folder');
         const lostFolder = document.getElementById('lost-folder');
         const archivesViewer = document.getElementById('archives-viewer');
@@ -388,13 +298,10 @@ CAUTION: This file will self-destruct after ██ views.
         const passwordSubmit = document.getElementById('password-submit');
         const passwordError = document.getElementById('password-error');
         const closeArchives = document.getElementById('close-archives');
-        const closePassword = document.getElementById('close-password');
         const closeHidden = document.getElementById('close-hidden');
-        
-        // Correct password
+
         const CORRECT_PASSWORD = 'styrka';
 
-        // Event Listeners
         archivesFolder.addEventListener('click', () => {
             archivesViewer.classList.add('active');
             passwordUI.classList.remove('active');
@@ -407,32 +314,16 @@ CAUTION: This file will self-destruct after ██ views.
             hiddenContent.classList.remove('active');
             passwordError.style.display = 'none';
             passwordInput.value = '';
-            passwordInput.focus();
         });
 
-        closeArchives.addEventListener('click', (e) => {
-            e.stopPropagation();
-            archivesViewer.classList.remove('active');
-        });
-
-        closePassword.addEventListener('click', (e) => {
-            e.stopPropagation();
-            passwordUI.classList.remove('active');
-        });
-
-        closeHidden.addEventListener('click', (e) => {
-            e.stopPropagation();
-            hiddenContent.classList.remove('active');
-        });
+        closeArchives.addEventListener('click', () => archivesViewer.classList.remove('active'));
+        closeHidden.addEventListener('click', () => hiddenContent.classList.remove('active'));
 
         passwordSubmit.addEventListener('click', checkPassword);
-        passwordInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                checkPassword();
-            }
+        passwordInput.addEventListener('keypress', e => {
+            if (e.key === 'Enter') checkPassword();
         });
 
-        // Password Check Function
         function checkPassword() {
             if (passwordInput.value === CORRECT_PASSWORD) {
                 passwordUI.classList.remove('active');
@@ -445,16 +336,11 @@ CAUTION: This file will self-destruct after ██ views.
             }
         }
 
-        // Accessibility: Focus management
-        document.addEventListener('keydown', (e) => {
+        document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
-                if (archivesViewer.classList.contains('active')) {
-                    archivesViewer.classList.remove('active');
-                } else if (passwordUI.classList.contains('active')) {
-                    passwordUI.classList.remove('active');
-                } else if (hiddenContent.classList.contains('active')) {
-                    hiddenContent.classList.remove('active');
-                }
+                archivesViewer.classList.remove('active');
+                passwordUI.classList.remove('active');
+                hiddenContent.classList.remove('active');
             }
         });
     </script>
